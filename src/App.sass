@@ -1,0 +1,80 @@
+$primary: #DD4242
+$global: #d3d3d3
+$blocks: #fff
+$text: #797a80
+$heading: #202531
+$success: #23d996
+$danger: #f25c5c
+$warning: #f2a35e
+
+.app
+  display: grid
+  place-items: center
+  min-height: 100vh
+  background-color: $global
+  .wrapper
+    background-color: $blocks
+    padding: 2rem
+    border-radius: 1rem
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.15)
+    position: relative
+    padding-top: 12rem
+    .credit-card
+      position: absolute
+      top: -120px
+      width: 100%
+      border-radius: 1rem
+      .card
+        width: 100%
+        box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.15) 
+        height: 100%
+        object-fit: cover
+        border-radius: 1rem
+      .card-chip
+        position: absolute
+        top: 1.5rem
+        left: 1.5rem
+        width: 3rem
+    .form
+      display: flex
+      flex-direction: column
+      .flex
+        display: flex
+        justify-content: space-between
+        .column
+          width: 30%
+          select
+            width: 100%
+
+
+
+.Input-wrapper
+  position: relative
+  .Input-label
+    position: absolute
+    top: .5rem
+    left: .5rem
+    height: 33px
+    font-size: 0.8rem
+    display: flex
+    align-items: center
+    color: $text
+    // transform: translateY(-50%)
+    pointer-events: none
+    transition: all
+    transition-duration: 200ms
+  .Input
+    width: calc(100% - 1rem)
+    padding: .5rem
+    border: solid 1px $global
+    border-radius: .25rem
+    margin: .5rem 0 1.5rem
+    transition: all
+    transition-duration: 200ms
+    &:hover, &:focus
+      transform: translateY(-3px)
+    &:focus
+      &~.Input-label
+        top: -1.5rem
+        color: $heading
+        font-weight: 700
