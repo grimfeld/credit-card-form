@@ -1,10 +1,11 @@
-import { Formik, Form, Field } from "formik"
 import { useEffect, useState } from "react"
 import "./App.css"
+import { Input } from "./components/UI"
 
 interface CreditCardData {
   number: {
-    value: string
+    current_value: string
+    valid: boolean
     error: string | null
   }
   name: string
@@ -13,27 +14,11 @@ interface CreditCardData {
   ccv: string
 }
 
-const Input = ({
-  label,
-  ...props
-}: {
-  label: string
-  name: string
-  type: string
-  onChange(e: any): void
-}) => {
-  return (
-    <div className="Input-wrapper">
-      <input {...props} className="Input" />
-      <label className="Input-label">{label}</label>
-    </div>
-  )
-}
-
 function App() {
   const [data, setData] = useState<CreditCardData>({
     number: {
-      value: "",
+      current_value: "",
+      valid: false,
       error: null,
     },
     name: "",
@@ -42,9 +27,16 @@ function App() {
     ccv: "",
   })
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  // useEffect(() => {
+  //   if (/\D/.test(data.number.current_value)) {
+  //     setData({
+  //       ...data,
+  //       number: { ...data.number, error: "Only digits are allowed" },
+  //     })
+  //   } else if (data.number.current_value.length < 16) {
+  //     setData({ ...data, number: { ...data.number, error: "Invalid Number" } })
+  //   }
+  // }, [data])
 
   return (
     <div className="app">
@@ -66,19 +58,21 @@ function App() {
             name="number"
             label="Card Number"
             type="text"
+            {...data.number}
             onChange={(e: any) =>
               setData({
                 ...data,
-                number: { ...data.number, value: e.target.value },
+                number: { ...data.number, current_value: e.target.value },
               })
             }
           />
-          <Input
+          {/* <Input
+            error="test"
             name="name"
             label="Card Name"
             type="text"
             onChange={(e) => setData({ ...data, name: e.target.value })}
-          />
+          /> */}
           <div className="flex">
             <div className="column">
               <label htmlFor="month">Expiration Date</label>
